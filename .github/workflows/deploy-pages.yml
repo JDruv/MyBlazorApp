@@ -1,0 +1,57 @@
+name: Deploy Blazor App to GitHub Pages
+
+# Definisce l'evento che attiva il workflow.
+# In questo caso, si attiva ad ogni push sul branch 'main'.
+on:
+  push:
+    branches: [ "main" ]
+
+# Concede i permessi necessari al workflow per scrivere su GitHub Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # Primo job: si occupa della compilazione dell'applicazione.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Esegue il checkout del codice sorgente dal repository.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Configura l'ambiente .NET con la versione specificata.
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      # Step 3: Compila l'applicazione in modalità Release e la pubblica
+      # nella directory 'publish'. L'output è ottimizzato per la produzione.
+      - name: Publish .NET app
+        run: dotnet publish MyBlazorApp.csproj -c Release -o publish
+
+      # Step 4: Workaround per il routing client-side di Blazor su GitHub Pages.
+      # Copia 'index.html' in '404.html' per gestire correttamente i refresh delle pagine.
+      - name: Add 404.html for client-side routing
+        run: cp publish/wwwroot/index.html publish/wwwroot/404.html
+
+      # Step 5: Carica l'output della build (la cartella wwwroot) come artefatto.
+      # Questo artefatto sarà utilizzato dal job di deploy.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./publish/wwwroot
+
+  # Secondo job: si occupa del deployment dell'artefatto su GitHub Pages.
+  deploy:
+    runs-on: ubuntu-latest
+    # Specifica che questo job deve attendere il completamento del job 'build'.
+    needs: build
+    steps:
+      # Step 1: Esegue il deploy dell'artefatto caricato in precedenza.
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
