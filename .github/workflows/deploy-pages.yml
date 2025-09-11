@@ -30,7 +30,7 @@ jobs:
       # Step 3: Compila l'applicazione in modalità Release e la pubblica
       # nella directory 'publish'. L'output è ottimizzato per la produzione.
       - name: Publish .NET app
-        run: dotnet publish MyBlazorApp.csproj -c Release -o publish
+        run: dotnet publish MyBlazorApp/MyBlazorApp.csproj -c Release -o publish
 
       # Step 4: Workaround per il routing client-side di Blazor su GitHub Pages.
       # Copia 'index.html' in '404.html' per gestire correttamente i refresh delle pagine.
