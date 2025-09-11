@@ -1,0 +1,56 @@
+# Compilazione .NET
+bin/
+obj/
+out/
+
+# File di pubblicazione
+*.exe
+*.dll
+*.pdb
+*.log
+*.cache
+*.db
+*.db-shm
+*.db-wal
+
+# Configurazioni locali
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+*.swp
+
+# File generati da Visual Studio
+.vs/
+*.vscode/
+*.launchSettings.json
+
+# Dipendenze locali
+packages/
+*.nuget/
+.nuget/
+
+# Build Blazor
+wwwroot/css/app.css
+wwwroot/css/app.css.map
+wwwroot/*.gz
+wwwroot/*.br
+
+# Certificati di sviluppo (Blazor Server)
+*.pem
+*.key
+*.crt
+*.pfx
+
+# Sistema operativo
+[Dd]esktop.ini
+[Tt]humbs.db
+ehthumbs.db
+*.DS_Store
+
+# Node.js (se usi librerie JS in Blazor)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
