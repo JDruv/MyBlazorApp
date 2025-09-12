@@ -1,0 +1,159 @@
+.page-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-top: 60px; /* navbar */
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0; left: 0;
+    backdrop-filter: blur(12px);
+    background: rgba(0,0,0,0.5);
+    z-index: 10;
+}
+.nav-links { display: flex; gap: 25px; list-style: none; }
+.nav-links a { color: #e6eef8; text-decoration: none; transition: color .3s; }
+.nav-links a:hover { color: #06b6d4; }
+
+/* HERO */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 20px;
+}
+.typewriter {
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    animation: typing 3s steps(60, end) forwards;
+    font-size: clamp(24px,4vw,48px);
+    font-weight: 700;
+    border: none;
+}
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+.lead { margin-top: 4px; font-size: 1.1rem; color: #9ba3b1; }
+
+/* SEZIONI */
+.section {
+    max-width: 900px;
+    margin: 10px auto;
+    padding: 10px 10px;
+}
+
+/* SKILLS */
+.skill { margin: 6px 0; }
+.skill span { font-weight: 600; display: block; margin-bottom: 4px; }
+.skill-bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.skill-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: #fff;
+    font-size: 12px;
+    padding-right: 5px;
+    transition: width 2s ease;
+}
+.skill-fill.tech { background: linear-gradient(90deg,#3b82f6,#8b5cf6); }
+.skill-fill.soft { background: linear-gradient(90deg,#10b981,#3b82f6); }
+
+/* CTA */
+.btn {
+    padding: 12px 30px;
+    border-radius: 30px;
+    background: linear-gradient(90deg,#6366f1,#a855f7);
+    color: #fff;
+    text-decoration: none;
+    transition: transform .3s;
+}
+.btn:hover { transform: scale(1.05); }
+
+.typewriter-about {
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    width: 0; /* importante: parte da 0 */
+    font-size: clamp(24px,4vw,36px);
+    font-weight: 700;
+    border: none;
+    margin-bottom: 10px;
+}
+
+/* Keyframes */
+@keyframes typing-about {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.about-text {
+    font-size: 1.1rem;
+    color: #9ba3b1;
+    margin-top: 6px;
+}
+
+
+/* Contatti centrato come le skill bar */
+.contact-container-centered {
+    display: flex;
+    justify-content: center; /* centrato */
+    align-items: flex-start;
+    gap: 40px; /* distanza tra i contatti */
+    max-width: 600px; /* larghezza simile alle skill bar */
+    margin: 0 auto; /* centrato nel viewport */
+}
+
+.contact-item p {
+    font-size: 1.1rem;
+    color: #9ba3b1;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centra icona e testo */
+}
+
+.contact-item .icon {
+    margin-right: 8px;
+}
+
+.contact-item a {
+    color: #e6eef8;
+    text-decoration: none;
+    transition: color .3s;
+}
+.contact-item a:hover {
+    color: #06b6d4;
+}
+
+/* Footer centrato */
+.footer {
+    background-color: #0b0f25; /* blu scuro ancora più scuro */
+    color: #9ba3b1;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+    .navbar { flex-direction: column; gap: 12px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; }
+}
+
